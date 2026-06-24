@@ -10,7 +10,7 @@ st.markdown(
 )
 
 # === OneDrive EMBED LINK (working embed link) ===
-embed_src = "https://1drv.ms/x/c/13C7E9465F9473DD/IQDqHyCCQIPGQ4OvFquRDo2NAcFaXizA-17m1OFlf68Hc-A?e=JskLLk"
+embed_src = "https://1drv.ms/x/c/13C7E9465F9473DD/IQDqHyCCQIPGQ4OvFquRDo2NAcFaXizA-17m1OFlf68Hc-A?e=HWgmjs"
 
 # === Fixed viewport size for the embedded workbook ===
 container_width = 1200
