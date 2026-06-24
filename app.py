@@ -1,63 +1,48 @@
-import streamlit as st
-import streamlit.components.v1 as components
+﻿import streamlit as st
 
-st.set_page_config(page_title="2026 FIFA Men's World Cup", layout="wide")
-
-# === Page Title ===
-st.markdown(
-    "<h1 style='text-align: center; margin: 8px 0 12px;'>2026 FIFA Men's World Cup</h1>",
-    unsafe_allow_html=True
+st.set_page_config(
+    page_title="BMFB Data | Sports Analytics Dashboard",
+    page_icon="⚽",
+    layout="wide",
+    initial_sidebar_state="expanded",
 )
 
-# === OneDrive EMBED (your provided iframe src) ===
-embed_src = "https://1drv.ms/x/c/13C7E9465F9473DD/IQTqHyCCQIPGQ4OvFquRDo2NAQPbtzzojDtLmMTudQod-oI"
-
-# === Full-page responsive embed ===
-# The iframe is sized to fill nearly the entire viewport height while leaving room for the Streamlit header.
-html = f"""
-<style>
-:root {{
-  --top-offset: 120px; /* space for title/Streamlit chrome; adjust if needed */
-}}
-html, body {{
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}}
-.embed-full {{
-  width: 100vw;
-  max-width: 100%;
-  height: calc(100vh - var(--top-offset));
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  background: #fff;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0 auto;
-}}
-.embed-full iframe {{
-  width: 100%;
-  height: 100%;
-  border: 0;
-  display: block;
-}}
-/* Remove extra Streamlit padding around the component when possible */
-.stApp > main > div[role="main"] {{
-  padding-top: 6px;
-}}
-</style>
-
-<div class="embed-full">
-  <iframe src="{embed_src}" frameborder="0" scrolling="no" sandbox="allow-same-origin allow-scripts allow-forms allow-popups"></iframe>
-</div>
-"""
-
-# components.html requires a numeric height; set it high enough so Streamlit allocates ample space.
-# The iframe itself uses calc(100vh - top-offset) so it will visually fill the page.
-components.html(html, height=1100, scrolling=False)
-
 st.markdown(
-    "<p style='text-align:center; margin-top:10px;'>This live workbook updates automatically whenever the Excel file is updated in OneDrive.</p>",
-    unsafe_allow_html=True
+    "<h1 style='text-align:center; margin:8px 0 12px;'>BMFB Data Sports Analytics</h1>",
+    unsafe_allow_html=True,
 )
+st.markdown(
+    "<p style='text-align:center; font-size:1.1rem; color:#555;'>"
+    "Your hub for real-time sports data, tournament tracking, and league analytics.</p>",
+    unsafe_allow_html=True,
+)
+st.divider()
+
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.markdown("### ⚽ FIFA World Cup 2026")
+    st.write("Track groups, fixtures, results, and standings for the 2026 FIFA Men's World Cup.")
+    st.page_link("pages/1_FIFA_World_Cup.py", label="Open FIFA World Cup ->")
+with col2:
+    st.markdown("### ⚾ Men's College World Series")
+    st.write("Live bracket, scores, and statistics for the Men's College World Series.")
+    st.page_link("pages/2_Mens_College_World_Series.py", label="Open MCWS ->")
+with col3:
+    st.markdown("### 🏈 NAFFL")
+    st.write("North American Flag Football League scores, standings, and schedule.")
+    st.page_link("pages/4_NAFFL.py", label="Open NAFFL ->")
+
+st.divider()
+col4, col5, col6 = st.columns(3)
+with col4:
+    st.markdown("### 🧢 Future GMs of America")
+    st.write("Prospect rankings, draft boards, and GM simulation data.")
+    st.page_link("pages/3_Future_GMs_of_America.py", label="Open Future GMs ->")
+with col5:
+    st.markdown("### 🤝 About Us")
+    st.write("Learn about the BMFB Data team and our mission.")
+    st.page_link("pages/5_About_Us.py", label="About Us ->")
+with col6:
+    st.markdown("### 💛 Giving")
+    st.write("Support our work and community initiatives.")
+    st.page_link("pages/6_Giving.py", label="Giving ->")

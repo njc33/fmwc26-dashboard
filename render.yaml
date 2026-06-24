@@ -1,0 +1,21 @@
+﻿services:
+  - type: web
+    name: fmwc26-dashboard
+    runtime: python
+    repo: https://github.com/njc33/fmwc26-dashboard
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+    plan: free
+    envVars:
+      - key: EMBED_MCWS
+        sync: false
+      - key: EMBED_FIFA
+        sync: false
+      - key: EMBED_FUTURE_GMS
+        sync: false
+      - key: EMBED_NAFFL
+        sync: false
+    domains:
+      - bmfbdata.com
+      - www.bmfbdata.com
