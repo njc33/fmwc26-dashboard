@@ -1,7 +1,7 @@
 ﻿import streamlit as st
 
 st.set_page_config(
-    page_title="BMFB Data | Sports Analytics Dashboard",
+    page_title="To honor the legacy of BMFB and his Nomenclator",
     page_icon="⚽",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -25,24 +25,24 @@ with col1:
     st.page_link("pages/1_FIFA_World_Cup.py", label="Open FIFA World Cup ->")
 with col2:
     st.markdown("### ⚾ Men's College World Series")
-    st.write("Live bracket, scores, and statistics for the Men's College World Series.")
+    st.write("View the bracket for the 2026 tournament.")
     st.page_link("pages/2_Mens_College_World_Series.py", label="Open MCWS ->")
 with col3:
     st.markdown("### 🏈 NAFFL")
-    st.write("North American Flag Football League scores, standings, and schedule.")
+    st.write("Coming Soon")
     st.page_link("pages/4_NAFFL.py", label="Open NAFFL ->")
 
 st.divider()
 col4, col5, col6 = st.columns(3)
 with col4:
     st.markdown("### 🧢 Future GMs of America")
-    st.write("Prospect rankings, draft boards, and GM simulation data.")
+    st.write("Coming Soon")
     st.page_link("pages/3_Future_GMs_of_America.py", label="Open Future GMs ->")
 with col5:
     st.markdown("### 🤝 About Us")
-    st.write("Learn about the BMFB Data team and our mission.")
+    st.write("PLACEHOLDER")
     st.page_link("pages/5_About_Us.py", label="About Us ->")
 with col6:
     st.markdown("### 💛 Giving")
-    st.write("Support our work and community initiatives.")
+    st.write("loading...")
     st.page_link("pages/6_Giving.py", label="Giving ->")
