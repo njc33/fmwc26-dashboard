@@ -4,7 +4,7 @@ import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from src.embeds import EMBED_URLS, iframe_html
 
-st.set_page_config(page_title="FIFA World Cup 2026 | BMFB Data", page_icon="⚽", layout="wide")
+st.set_page_config(page_title="FIFA World Cup 2026 Live Standings & Bracket", page_icon="⚽", layout="wide")
 st.markdown("<h1 style='text-align:center;'>⚽ 2026 FIFA Men's World Cup</h1>", unsafe_allow_html=True)
 
 if EMBED_URLS["fifa"]:
