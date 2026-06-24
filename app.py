@@ -9,14 +9,13 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# === OneDrive EMBED LINK (working embed link) ===
-embed_src = "https://1drv.ms/x/c/13C7E9465F9473DD/IQDqHyCCQIPGQ4OvFquRDo2NAcFaXizA-17m1OFlf68Hc-A?e=HWgmjs"
+# === OneDrive EMBED (from your iframe) ===
+embed_src = "https://1drv.ms/x/c/13C7E9465F9473DD/IQTqHyCCQIPGQ4OvFquRDo2NAQPbtzzojDtLmMTudQod-oI"
+# dimensions from the iframe you provided
+container_width = 402
+container_height = 346
 
-# === Fixed viewport size for the embedded workbook ===
-container_width = 1200
-container_height = 700
-
-# === Clean embed (no controls, no sidebar) ===
+# === Clean embed (using the exact iframe attributes you provided) ===
 html = f"""
 <style>
 .embed-wrap {{
@@ -31,12 +30,13 @@ html = f"""
   width: 100%;
   height: 100%;
   border: 0;
+  display: block;
 }}
 </style>
 
 <div style="text-align:center; max-width:100%;">
   <div class="embed-wrap">
-    <iframe src="{embed_src}" sandbox="allow-same-origin allow-scripts allow-forms allow-popups"></iframe>
+    <iframe src="{embed_src}" width="{container_width}" height="{container_height}" frameborder="0" scrolling="no" allowfullscreen></iframe>
   </div>
 </div>
 """
