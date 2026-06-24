@@ -2,16 +2,21 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 st.set_page_config(page_title="2026 FIFA Men's World Cup", layout="wide")
-st.title("2026 FIFA Men's World Cup")
 
-# === OneDrive EMBED LINK (this one works for iframe embedding) ===
+# === Page Title ===
+st.markdown(
+    "<h1 style='text-align: center; margin-bottom: 10px;'>2026 FIFA Men's World Cup</h1>",
+    unsafe_allow_html=True
+)
+
+# === OneDrive EMBED LINK (working embed link) ===
 embed_src = "https://1drv.ms/x/c/13C7E9465F9473DD/IQT8CnkpzF0wQ75QWftP-BC8AboZVps3bpDok7h1RQCo8_M"
 
 # === Fixed viewport size for the embedded workbook ===
 container_width = 1200
 container_height = 700
 
-# === CSS + HTML for clean embed (no controls, no overlays) ===
+# === Clean embed (no controls, no sidebar) ===
 html = f"""
 <style>
 .embed-wrap {{
@@ -39,5 +44,6 @@ html = f"""
 components.html(html, height=container_height + 40, scrolling=False)
 
 st.markdown(
-    "This live workbook updates automatically whenever the Excel file is updated in OneDrive."
+    "<p style='text-align:center;'>This live workbook updates automatically whenever the Excel file is updated in OneDrive.</p>",
+    unsafe_allow_html=True
 )
