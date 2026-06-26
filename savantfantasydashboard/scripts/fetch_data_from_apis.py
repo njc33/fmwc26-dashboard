@@ -1,4 +1,3 @@
-```python
 """
 fetch_data_from_apis.py
 -----------------------
@@ -31,7 +30,7 @@ try:
 except ImportError:
     raise ImportError("Run: pip install pybaseball")
 
-# ── Config ────────────────────────────────────────────────────────────────────
+# -- Config -------------------------------------------------------------------
 
 CURRENT_YEAR = datetime.date.today().year
 SEASON_START = f"{CURRENT_YEAR}-03-20"
@@ -40,20 +39,20 @@ TODAY        = datetime.date.today().isoformat()
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
 os.makedirs(DATA_DIR, exist_ok=True)
 
-cache.enable()  # avoid redundant network requests
+cache.enable()
 
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
+# -- Helpers ------------------------------------------------------------------
 
-def save(df: pd.DataFrame, filename: str) -> None:
+def save(df, filename):
     path = os.path.join(DATA_DIR, filename)
     df.to_csv(path, index=False)
-    print(f"  v Saved {len(df):,} rows -> {path}")
+    print(f"  [OK] Saved {len(df):,} rows -> {path}")
 
 
-# ── Ingestion ─────────────────────────────────────────────────────────────────
+# -- Ingestion ----------------------------------------------------------------
 
-def fetch_statcast(start: str = SEASON_START, end: str = TODAY) -> pd.DataFrame:
+def fetch_statcast(start=SEASON_START, end=TODAY):
     print(f"[statcast] Fetching {start} -> {end} ...")
     df = statcast(start_dt=start, end_dt=end)
     batter_agg = (
@@ -72,49 +71,50 @@ def fetch_statcast(start: str = SEASON_START, end: str = TODAY) -> pd.DataFrame:
     return batter_agg
 
 
-def fetch_fg_batting(min_pa: int = 100) -> pd.DataFrame:
+def fetch_fg_batting(min_pa=100):
     print("[fangraphs] Fetching batting leaderboard ...")
     df = fg_batting_data(CURRENT_YEAR, CURRENT_YEAR, qual=min_pa)
     df["fetch_date"] = TODAY
     return df
 
 
-def fetch_fg_pitching(min_ip: int = 20) -> pd.DataFrame:
+def fetch_fg_pitching(min_ip=20):
     print("[fangraphs] Fetching pitching leaderboard ...")
     df = fg_pitching_data(CURRENT_YEAR, CURRENT_YEAR, qual=min_ip)
     df["fetch_date"] = TODAY
     return df
 
 
-def fetch_sprint_speed() -> pd.DataFrame:
+def fetch_sprint_speed():
     print("[statcast] Fetching sprint speed leaderboard ...")
     df = statcast_running_splits(CURRENT_YEAR)
     df["fetch_date"] = TODAY
     return df
 
 
-# ── Main ──────────────────────────────────────────────────────────────────────
+# -- Main ---------------------------------------------------------------------
 
 def main():
     print("=" * 60)
-    print("  savantfantasydashboard — API data ingestion")
+    print("  savantfantasydashboard -- API data ingestion")
     print(f"  Run date : {TODAY}  |  Season: {CURRENT_YEAR}")
     print("=" * 60)
 
     steps = [
-        ("statcast_latest.csv",    fetch_statcast),
-        ("fg_batting_leaders.csv", fetch_fg_batting),
-        ("fg_pitching_leaders.csv",fetch_fg_pitching),
-        ("sprint_speed.csv",       fetch_sprint_speed),
+        ("statcast_latest.csv",     fetch_statcast),
+        ("fg_batting_leaders.csv",  fetch_fg_batting),
+        ("fg_pitching_leaders.csv", fetch_fg_pitching),
+        ("sprint_speed.csv",        fetch_sprint_speed),
     ]
+
     for filename, fn in steps:
         try:
             save(fn(), filename)
         except Exception as e:
-            print(f"  X {filename} failed: {e}")
+            print(f"  [!!] {filename} failed: {e}")
 
     print("\nDone! Check the data/ folder.")
-    print("Tip: data/*.csv is gitignored — commit only curated outputs.")
+    print("Note: data/*.csv is gitignored -- commit only curated outputs.")
 
 
 if __name__ == "__main__":
